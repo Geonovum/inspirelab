@@ -1,8 +1,6 @@
-.. _server:
-
-************
+======
 Server
-************
+======
 
 The server hosts several applications related to INSPIRE activities of Geonovum. This chapter provides technical details about the server and applications.
 
