@@ -1,3 +1,5 @@
+.. _server:
+
 ************
 Server
 ************
@@ -27,10 +29,21 @@ Created May 8th 2015
     Cpus..........: 2
 
 
+Host
+====
+
+Geonovum domain: TODO
+
+CloudVPS hostname: vps60747.public.cloudvps.com
+
+IPv4: 141.138.192.61
+
+
 Backup
 ============
 Auto-backup by CloudVPS, Object Store. See docs http://www.cloudvps.com/community/knowledge-base/cloudvps-boss-linux-backup-to-object-store/
 
+Backups databases and files daily.
 
 Accounts
 ============
@@ -39,7 +52,11 @@ Besides the ``root`` account, there is a user account ``inspire``. The user ``in
 user ``inspire`` has rights on tomcat7:
     ``usermod -aG tomcat7 inspire``
 
-user ``inspire`` has sudo rights (created using visudo) for restarting some services
+user ``inspire`` has sudo rights (created using visudo) for restarting some services, like Apache, Tomcat, Postgresql.
+
+Application and database users
+------------------------------
+Usernames for applications and databases are only available within Geonovum.
 
 Software
 ============
@@ -55,9 +72,10 @@ Following software is installed, using Ubuntu's APT tooling.
 Apache2
 -------
 
-* PHP5
-* TODO: proxy for Geoserver
+Enabled:
 
+* PHP5
+* mod_proxy, mod_proxy_ajp
 
 Tomcat 7
 --------
@@ -68,6 +86,7 @@ Tomcat 7
    ``JAVA_OPTS="-Djava.awt.headless=true -server -Xmx1024M -Xms256M -XX:SoftRefLRUPolicyMSPerMB=36000
    -XX:MaxPermSize=256m -XX:+UseParallelGC"``
 
+* Proxy AJP enabled
 
 Applications
 ============
@@ -77,7 +96,6 @@ namespaceregister
 
 * Database: ``namespaces``
 * Base URL: ``http://vps60747.public.cloudvps.com/namespaces/``
-
 
 smartcities
 -----------------
@@ -91,4 +109,5 @@ Custom compiled version for TJS (base: v 2.8)
 
 TODO: TJS installation and data configuration
 
-TODO: Mod_proxy
+* Base URL: ``http://vps60747.public.cloudvps.com/geoserver``
+
