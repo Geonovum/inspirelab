@@ -4,13 +4,13 @@
 Server
 ======
 
-The server hosts several applications related to INSPIRE activities of Geonovum. This chapter provides technical details about the server and applications.
+The server http://inspirelab.geonovum.nl hosts several applications related to INSPIRE activities of Geonovum. This chapter provides technical details about the server and applications.
 
 Default settings are used unless specified otherwise.
 
 System specs
 ============
-Created May 8th 2015
+Created May 8th 2015, CloudVPS
 
     [vps60747]
 
@@ -32,7 +32,7 @@ Created May 8th 2015
 Host
 ====
 
-Geonovum domain: TODO
+Geonovum domain: inspirelab.geonovum.nl
 
 CloudVPS hostname: vps60747.public.cloudvps.com
 
@@ -47,7 +47,7 @@ Backups databases and files daily.
 
 Accounts
 ============
-Besides the ``root`` account, there is a user account ``inspire``. The user ``inspire`` has the appropriate rights to manage the applications for the INSPIRE lab.
+Besides the ``root`` account, there is a user account ``inspire`` with limited rights. The user ``inspire`` has the appropriate rights to manage the applications for the INSPIRE lab.
 
 user ``inspire`` has rights on tomcat7:
     ``usermod -aG tomcat7 inspire``
@@ -95,19 +95,31 @@ namespaceregister
 -----------------
 
 * Database: ``namespaces``
-* Base URL: ``http://vps60747.public.cloudvps.com/namespaces/``
+* Base URL: http://inspirelab.geonovum.nl/namespaces/
+* PHP, MySQL application
 
 smartcities
 -----------------
 
 * Database: ``smartcities``
-* Base URL: ``http://vps60747.public.cloudvps.com/smartcities/``
+* Base URL: http://inspirelab.geonovum.nl/smartcities/
+* PHP, MySQL application
 
 Geoserver WMS/WFS + TJS
 -----------------------
 Custom compiled version for TJS (base: v 2.8)
 
-TODO: TJS installation and data configuration
+This GeoServer instance is used for demos. It is not intended for production use. Custom settings are documented below.
 
-* Base URL: ``http://vps60747.public.cloudvps.com/geoserver``
+* Base URL: http://inspirelab.geonovum.nl/geoserver/
+* WFS: only basic WFS is enabled, disallowing transactions (writing data)
+* WMS: limited set of supported CRSes: 28992,900913,3857,4326,4258,3034,3035 and enable 
+* WMS: generate BoundingBoxes for all avalaible CRSes
+* WCS: disabled, because no raster data is served at the moment
+* TJS: plugin installed (local build)
 
+GeoServer data
+--------------
+* PDOK namespace: for using PDOK served data as a data source, like the CBS Gebiedsindelingen WFS.
+* CBS Gebiedsindelingen: using WFS of PDOK for CBS Gebiedsindelingen for TJS. GGD Regio's 2012 and Gemeente 2012 configured for the moment.
+* TJS Spatial Framework: for Gemeente 2012 (CBSGemeente2012) and GGD Regio's 2012 (CBSGGDRegio2012). PDOK namespace.
